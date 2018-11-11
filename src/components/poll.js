@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Poll extends Component {
+class Poll extends Component {
   render() {
     return (
       <div>
@@ -9,3 +9,4 @@ export default class Poll extends Component {
     )
   }
 }
+export default Poll ;

@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {Provider} from 'react-redux';
 
+import './App.css';
+import '../node_modules/bulma/css/bulma.css'
+import Create from './components/create';
+import Poll from './components/poll';
+import Stats from './components/stats';
+import SignUpIn from './components/signUpIn';
+import NavBar from './components/navBar';
+import store from './store';
 class App extends Component {
+ 
+  componentWillMount(){  
+ 
+// let isLoggedIn= sessionStorage.getItem('isLoggedIn');
+// if(isLoggedIn==null)
+// {sessionStorage.setItem('isLoggedIn', 'false')
+//  this.setState({isLoggedIn:false})
+// }
+// else{
+//   if(isLoggedIn=='false'){
+//     this.setState({isLoggedIn:false})
+//   }
+//   else{
+//     this.setState({isLoggedIn:true})
+//   }
+// }
+}
+ 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+      <Router>
+        <div>         
+          <NavBar /> 
+          <SignUpIn /> 
+          
+          <Route exact path="/" component={Create} />        
+          <Route path="/poll" component={Poll} />
+          <Route path="/stats" component={Stats} />
+
+          
+        </div>
+      </Router>
+      </Provider>
     );
   }
 }

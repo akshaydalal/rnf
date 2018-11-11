@@ -13,7 +13,7 @@ import PropTypes from 'prop-types'
             this.setState({activeTab:window.location.pathname})
     }
     logout=()=>{
-     let loggedInUser={}
+     let loggedInUser={}      
       sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
       sessionStorage.setItem('isLoggedIn','false');
       window.location.reload();

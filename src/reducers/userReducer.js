@@ -12,12 +12,24 @@ export default function(state=initialState,action){
     let islogged=false;
     switch(action.type){        
         case ADD_USER :           
-        users=JSON.parse(localStorage.getItem('users'));
+        users= localStorage.getItem('users');
+        if(users==null){
+            users=[];
+            localStorage.setItem('users', JSON.stringify(users));                
+        }
+        else{
+            users=JSON.parse(localStorage.getItem('users'))
+        }
         users.push(action.payload);
-        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('users', JSON.stringify(users));        
+        loggedInUser={name:action.payload.name,
+        email:action.payload.email}
+        sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+        sessionStorage.setItem('isLoggedIn','true');    
           return {
               ...state,
-              loggedInUser:action.payload,
+              loggedInUser:{name:action.payload.name,
+                            email:action.payload.email},
               isLoggedIn:true,
               users:users
           }
@@ -58,14 +70,15 @@ export default function(state=initialState,action){
 
             } 
 
-         case SIGN_IN :    
-          console.log('helo1',action.payload)  
-          sessionStorage.setItem('loggedInUser', JSON.stringify(action.payload));
+         case SIGN_IN :  
+         loggedInUser={name:action.payload.name,
+            email:action.payload.email};
+          sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
           sessionStorage.setItem('isLoggedIn','true');      
                      
          return {
              ...state,
-             loggedInUser:action.payload,
+             loggedInUser:loggedInUser,
              isLoggedIn:true
              
          }     

@@ -12,22 +12,7 @@ import NavBar from './components/navBar';
 import store from './store';
 class App extends Component {
  
-  componentWillMount(){  
- 
-// let isLoggedIn= sessionStorage.getItem('isLoggedIn');
-// if(isLoggedIn==null)
-// {sessionStorage.setItem('isLoggedIn', 'false')
-//  this.setState({isLoggedIn:false})
-// }
-// else{
-//   if(isLoggedIn=='false'){
-//     this.setState({isLoggedIn:false})
-//   }
-//   else{
-//     this.setState({isLoggedIn:true})
-//   }
-// }
-}
+
  
   render() {
     return (
